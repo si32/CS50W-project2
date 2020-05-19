@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+talks
+
+<button id="exit">Exit</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('#exit').onclick = () => {
+            localStorage.clear();
+            window.location.replace('/');
+        };
+
+    });
+</script>
+{% endblock %}
+
+
+<!-- <script src="{{ url_for('static', filename='js/index.js') }}"></script> -->
