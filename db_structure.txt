@@ -1,0 +1,61 @@
+{
+    "channels": [
+        {
+        "channel_name": "ch_name",
+        "messages": [
+            {
+            "message1": {"author": "d_name", "time": "m_time", "text": "m_text"},
+            "message2": {"author": "d_name", "time": "m_time", "text": "m_text"},
+            }
+        ]
+        },
+        {
+        "channel_name": "ch_name",
+        "messages": [
+            {
+            "message1": {"author": "d_name", "time": "m_time", "text": "m_text"},
+            "message2": {"author": "d_name", "time": "m_time", "text": "m_text"},
+            }
+        ]
+        }
+    ]
+}
+
+{
+    "channels": [
+        {
+            "channel_name": "ch1",
+            "messages": [
+                {
+                    "message1": {
+                        "author": "a",
+                        "time": "2020-05-20_14:33",
+                        "text": "hello, s!"
+                    },
+                    "message2": {
+                        "author": "s",
+                        "time": "2020-05-20_14:34",
+                        "text": "hi there..."
+                    }
+                }
+            ]
+        },
+        {
+            "channel_name": "ch2",
+            "messages": [
+                {
+                    "message1": {
+                        "author": "b",
+                        "time": "2020-05-21_15:01",
+                        "text": "SUp?"
+                    },
+                    "message2": {
+                        "author": "q",
+                        "time": "2020-05-21_16:02",
+                        "text": ":)"
+                    }
+                }
+            ]
+        }
+    ]
+}
