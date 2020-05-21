@@ -1,3 +1,4 @@
 # Project 2
 
-Web Programming with Python and JavaScript
+1. Display name - using localStorage. Cheking if it already exist.
+Нажимая выйти - надо почистить localStorage
