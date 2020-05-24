@@ -28,7 +28,7 @@ def signin():
 def talks():
     # db = json.dumps(database)
     # channel = db["channels"]
-    db["channels"][0]["channel_name"] = "MY Chan!"
+    # db["channels"][0]["channel_name"] = "MY Chan!"
     # c = {"channel_name": "ch3"}
     # db["channels"].append(c)
     # db["channels"].pop(0)
@@ -59,6 +59,19 @@ def add_channel(data):
     if channel_name in channel_names:
         emit("exist channel_name", broadcast=True)
     else:
-        db["channels"].append({"channel_name": channel_name})
+        db["channels"].append({"channel_name": channel_name, "messages": {}})
         channel_names = getchannel_names()
         emit("new channel_name", channel_names, broadcast=True)
+
+
+# Route to view the channel data
+@app.route("/<channel_name>")
+def view(channel_name):
+    data = db["channels"]
+    for channel in db["channels"]:
+        if channel["channel_name"] == channel_name:
+            messages = channel["messages"]
+    return jsonify({"messages": messages})
+
+
+#

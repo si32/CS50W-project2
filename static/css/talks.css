@@ -1,0 +1,311 @@
+body {
+    margin: 0;
+
+    /* font-family: 'Amatic SC', cursive; */
+    /* font-family: 'Chelsea Market', cursive; */
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0;
+}
+
+
+/* Container
+===================*/
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 100%;
+
+}
+
+
+/* Header
+===================*/
+
+.header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 15px;
+    border-bottom: 1px solid lightslategray;
+    align-items: center;
+}
+
+.header__userinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__userinfo>div {
+    margin: 0 20px;
+}
+
+.header__channelinfo {
+    margin-right: 20px;
+}
+
+/* Button Exit
+===================*/
+
+#exit {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+
+    opacity: .75;
+    transition: opacity 0.1s linear;
+}
+
+#exit:hover {
+    opacity: 1;
+}
+
+
+/* Main
+===================*/
+
+.main {
+    position: relative;
+    padding-top: 55px;
+    height: 100vh;
+
+}
+
+.main__inner {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Channels
+===================== */
+
+.channels {
+    flex: 30%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+}
+
+.add_channel {
+    display: flex;
+    margin: 5px 10px;
+}
+
+.channels_input {
+    margin: 0;
+    height: 30px;
+    width: 80%;
+
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.btn--add {
+    margin-left: 10px;
+    height: 30px;
+    width: 20%;
+
+    font-size: 20px;
+
+    padding: 0;
+}
+
+
+/* Channel
+===================== */
+.channel {
+    flex: 70%;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    padding-bottom: 80px;
+}
+
+
+/* View message
+===================== */
+.view {
+ height: 100%;
+ overflow: auto;
+}
+
+.message {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.message__content {
+    margin: 4px 5px;
+    padding: 0 5px;
+    width: 75%;
+
+    border: 1px solid rgb(205, 217, 230);;
+    border-radius: 15px;
+
+    opacity: 0.8;
+    transition: opacity 0.1s linear;
+}
+
+.message--my {
+    justify-content: flex-end;
+}
+
+.message__author {
+    margin: 2px 2px;
+    font-size: 10px;
+    text-align: left;
+}
+
+.message__text {
+    font-size: 14px;
+}
+
+.message__content:hover {
+    opacity: 1;
+}
+
+.message__time {
+    margin: 2px 2px;
+    font-size: 10px;
+    text-align: right;
+}
+
+
+/* Send message
+===================== */
+
+.send {
+    display: flex;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 80px;
+    border-top: 1px solid lightslategray;
+    padding: 15px 0;
+}
+
+.send__massage {
+    height: 100%;
+    width: 75%;
+    resize: none;
+
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.send__massage::placeholder {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.btn {
+    display: inline-block;
+    vertical-align: top;
+
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.btn--send {
+    margin: 0 10px;
+    height: 100%;
+    width: 25%;
+}
+
+
+/* List item
+========================= */
+
+.li {
+    list-style: none;
+    padding: 4px 0;
+}
+
+.ch-link {
+    text-decoration: none;
+    color: black;
+
+    position: relative;
+
+    opacity: 0.8;
+    transition: opacity 0.1s linear;
+}
+
+.ch-link:hover {
+    opacity: 1;
+}
+
+.ch-link::before {
+    content: "\261E";
+
+    opacity: 0;
+    transition: opacity 0.1s linear;
+
+    position: absolute;
+    top: 0;
+    left: -20px;
+    z-index: 1;
+
+}
+
+.ch-link:hover::before {
+    opacity: 1;
+}
+
+
+@media screen and (max-width: 700px) {
+    .row {
+      flex-direction: column;
+    }
+
+
+
+ /* It doesn't work in separate css file */
+ ::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

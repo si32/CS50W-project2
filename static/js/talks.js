@@ -17,8 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.on('connect', () => {
         document.querySelector('#add').onclick = () => {
             const channel_name = document.querySelector('#channel_name').value;
+
+            // clear input field and disabled button
             document.querySelector('#channel_name').value = "";
             document.querySelector('#add').disabled = true;
+
             socket.emit('add channel', { 'channel_name': channel_name });
         };
 
@@ -35,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         var i;
         for (i = 0; i < channel_names.length; i++) {
             const li = document.createElement('li');
-            li.innerHTML = channel_names[i];
+            li.innerHTML = `<a href="" class="ch-link" data-channel="${channel_names[i]}"> ${channel_names[i]} </a>`;
             document.querySelector('#channels').append(li);
         }
     });
@@ -64,3 +67,42 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 });
+
+
+// отображение сообщений канала
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Start by loading local stored channel.
+    channel_name = localStorage.getItem('channelName');
+    if (channel_name != null) {
+        load_channel(channel_name);
+    }
+    else {
+        load_channel('welcome');
+    }
+
+
+    // Set links up to load new channels.
+    document.querySelectorAll('.ch-link').forEach(link => {
+        link.onclick = () => {
+            load_channel(link.dataset.channel);
+            // storage channel name in localStorage
+            localStorage.setItem('channelName', link.dataset.channel);
+            return false;
+        };
+    });
+});
+
+// Renders contents of new page in main view.
+function load_channel(channel_name) {
+    const request = new XMLHttpRequest();
+    request.open('GET', `/${channel_name}`);
+    request.onload = () => {
+        const response = JSON.parse(request.responseText);
+        // console.log('responseText:' + request.responseText);
+        // console.log('response:' + response.messages[0].message1.text);
+        document.querySelector('#view').innerHTML = response.messages[0].message1.text;
+
+    };
+    request.send();
+}

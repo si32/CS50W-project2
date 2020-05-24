@@ -1,13 +1,13 @@
 {
     "channels": [
         {
-            "channel_name": "MY Chan!",
+            "channel_name": "welcome",
             "messages": [
                 {
                     "message1": {
                         "author": "a",
                         "time": "2020-05-20_14:33",
-                        "text": "hello, s!"
+                        "text": "hello, si32!"
                     },
                     "message2": {
                         "author": "s",

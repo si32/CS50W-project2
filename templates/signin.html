@@ -1,54 +1,65 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- add style -->
+    <link rel="stylesheet" href="./static/css/style.css">
+    <title>Let's talk</title>
+</head>
 
-<!-- If displayName in storage then go to talks page -->
-<script>
-    if (localStorage.getItem('displayName') != null) {
-        window.location.replace('/talks');
-    }
-</script>
 
-
-<div style="text-align: center; padding: 10rem;">
-
-    <div>
-        <h2>Let's talk</h2>
-    </div>
-    <input placeholder="Enter your Name" autofocus type="text">
-    <button>Sign in</button>
-
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // By default button is disabled
-        document.querySelector('button').disabled = true;
-
-        // Enable button only if there is text in input field
-        document.querySelector('input').onkeyup = event => {
-            if (document.querySelector('input').value.length > 0) {
-                document.querySelector('button').disabled = false;
-                // Number 13 is the "Enter" key on the keyboard
-                if (event.keyCode === 13) {
-                    // Cancel the default action, if needed
-                    event.preventDefault();
-                    // Trigger the button element with a click
-                    document.querySelector('button').click();
-                }
-            }
-            else {
-                document.querySelector('button').disabled = true;
-            };
-        };
-        // Save displayName in storage and reload page to go talks
-        document.querySelector('button').onclick = () => {
-            const dname = document.querySelector('input').value;
-            localStorage.setItem('displayName', dname);
-            window.location.reload();
+<body>
+    <!-- If displayName in storage then go to talks page -->
+    <script>
+        if (localStorage.getItem('displayName') != null) {
+            window.location.replace('/talks');
         }
-    });
-</script>
+    </script>
 
-{% endblock %}
+
+    <div style="text-align: center; padding: 10rem;">
+
+        <div>
+            <h2>Let's talk</h2>
+        </div>
+        <input placeholder="Enter your Name" autofocus type="text">
+        <button>Sign in</button>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // By default button is disabled
+            document.querySelector('button').disabled = true;
+
+            // Enable button only if there is text in input field
+            document.querySelector('input').onkeyup = event => {
+                if (document.querySelector('input').value.length > 0) {
+                    document.querySelector('button').disabled = false;
+                    // Number 13 is the "Enter" key on the keyboard
+                    if (event.keyCode === 13) {
+                        // Cancel the default action, if needed
+                        event.preventDefault();
+                        // Trigger the button element with a click
+                        document.querySelector('button').click();
+                    }
+                }
+                else {
+                    document.querySelector('button').disabled = true;
+                };
+            };
+            // Save displayName in storage and reload page to go talks
+            document.querySelector('button').onclick = () => {
+                const dname = document.querySelector('input').value;
+                localStorage.setItem('displayName', dname);
+                window.location.reload();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
