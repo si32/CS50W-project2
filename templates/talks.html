@@ -42,21 +42,20 @@
                     </div>
 
                     <div class="view_channels">
-                        <div>
-                            <ul id="channels">
-                                {% for channel in channels %}
-                                <li class="li"><a href="" class="ch-link" data-channel="{{ channel["channel_name"] }}">
-                                        {{ channel["channel_name"] }}</a></li>
-                                {% endfor %}
-                            </ul>
-                            <!-- radio -->
-                            <!-- {% for channel in channels %}
-                            <input class="radio" type="radio" data-channel="{{ channel["channel_name"] }}">
-                            {% endfor %} -->
 
-
-
+                        <!-- radio -->
+                        {% for channel in channels %}
+                        <div class="radio">
+                            <input class="radio__input" name="channel_name" id="{{ channel["channel_name"] }}"
+                                type="radio" data-channel="{{ channel["channel_name"] }}">
+                            <label class="radio__label"
+                                for="{{ channel["channel_name"] }}">{{ channel["channel_name"] }}</label>
                         </div>
+
+                        {% endfor %}
+
+
+
                     </div>
                 </div> <!-- channels -->
 

@@ -134,6 +134,10 @@ p {
     padding: 0;
 }
 
+.view_channels {
+    padding-left: 25px;
+}
+
 
 /* Channel
 ===================== */
@@ -246,42 +250,43 @@ p {
 }
 
 
-/* List item
+/* Radio item
 ========================= */
 
-.li {
-    list-style: none;
-    padding: 4px 0;
-}
-
-.ch-link {
-    text-decoration: none;
-    color: black;
-
+.radio {
     position: relative;
-
-    opacity: 0.8;
-    transition: opacity 0.1s linear;
 }
 
-.ch-link:hover {
-    opacity: 1;
+.radio__input {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
 }
 
-.ch-link::before {
-    content: "\261E";
+.radio__label {
+    padding-left: 20px;
+    cursor: pointer;
+}
 
-    opacity: 0;
-    transition: opacity 0.1s linear;
+.radio__label::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+
+    background: url(/static/icons/bird.svg) no-repeat;
+    background-size: 16px 16px;
 
     position: absolute;
     top: 0;
-    left: -20px;
+    left: 0;
     z-index: 1;
 
+    opacity: 0  ;
+    transition: opacity 0.1s linear;
 }
 
-.ch-link:hover::before {
+.radio__input:checked + .radio__label:before {
     opacity: 1;
 }
 
