@@ -67,10 +67,12 @@ def add_channel(data):
 # Route to view the channel data
 @app.route("/<channel_name>")
 def view(channel_name):
-    data = db["channels"]
     for channel in db["channels"]:
         if channel["channel_name"] == channel_name:
-            messages = channel["messages"]
+            if channel["messages"]:
+                messages = channel["messages"]
+            else:
+                messages = ""
     return jsonify({"messages": messages})
 
 

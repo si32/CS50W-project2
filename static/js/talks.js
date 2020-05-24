@@ -34,12 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Список каналов сохраняется на сервере и в ответ прилетает обновленный список каналов
     // Мы удаляем старый спиок и строим новый список
     socket.on('new channel_name', channel_names => {
-        document.querySelector('#channels').innerHTML = "";
+        document.querySelector('.view_channels').innerHTML = "";
         var i;
         for (i = 0; i < channel_names.length; i++) {
-            const li = document.createElement('li');
-            li.innerHTML = `<a href="" class="ch-link" data-channel="${channel_names[i]}"> ${channel_names[i]} </a>`;
-            document.querySelector('#channels').append(li);
+            const radiobutton = document.createElement('div');
+            radiobutton.className = "radio"
+            radiobutton.innerHTML = `<input class="radio__input" name="${channel_names[i]}" id="${channel_names[i]}" type="radio" data-channel="${channel_names[i]}">
+                <label class="radio__label"
+                    for="${channel_names[i]}">${channel_names[i]}</label>`;
+            document.querySelector('.view_channels').append(radiobutton);
+            // нужно перезагрузить страницу иначе  html у страницы без новых радио и они не работают как надо
+            location.reload();
         }
     });
 });
@@ -82,12 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+
     // Set links up to load new channels.
-    document.querySelectorAll('.ch-link').forEach(link => {
-        link.onclick = () => {
-            load_channel(link.dataset.channel);
+    document.querySelectorAll('.radio__input').forEach(radiobutton => {
+        radiobutton.onclick = () => {
+            load_channel(radiobutton.dataset.channel);
             // storage channel name in localStorage
-            localStorage.setItem('channelName', link.dataset.channel);
+            localStorage.setItem('channelName', radiobutton.dataset.channel);
             return false;
         };
     });
@@ -95,13 +101,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Renders contents of new page in main view.
 function load_channel(channel_name) {
+    // чтобы отметить выбранный канал при загрузке страницы
+    const r = document.querySelector(`#${channel_name}`);
+    r.checked = true;
+
     const request = new XMLHttpRequest();
     request.open('GET', `/${channel_name}`);
     request.onload = () => {
         const response = JSON.parse(request.responseText);
         // console.log('responseText:' + request.responseText);
         // console.log('response:' + response.messages[0].message1.text);
-        document.querySelector('#view').innerHTML = response.messages[0].message1.text;
+        if (response.messages) {
+            document.querySelector('.view').innerHTML = response.messages[0].message1.text;
+        }
+        else {
+            document.querySelector('.view').innerHTML = "";
+        }
+
+        // надо опять отметить радиобатон а то не ставиться, не знаю почему (при смене канала без перезагрузки)
+        // возможно не понадобится когда правильно сделаю сообщения.
+        r.checked = true;
+
 
     };
     request.send();
